@@ -98,7 +98,7 @@ export default function NavbarComponent() {
                   )}
                   {userInfo.role === 'PROVIDER' && (
                     <Nav.Item className="ms-3 me-3">
-                      <LinkContainer to="/mes-offres">
+                      <LinkContainer to="/my-offers">
                         <Nav.Link>Mes offres</Nav.Link>
                       </LinkContainer>
                     </Nav.Item>

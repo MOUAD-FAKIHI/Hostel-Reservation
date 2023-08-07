@@ -48,4 +48,25 @@ public class OfferServiceImpl implements OfferService {
 
         return offerDto;
     }
+
+    @Override
+    public List<OfferDto> getOffersByUserId(String userId) {
+        List<OfferDto> offerDtos = new ArrayList<>();
+
+        List<OfferEntity> offers = offerRepository.findByUserId(userId);
+
+        for(OfferEntity offerEntity : offers){
+            OfferDto offer = new OfferDto();
+            BeanUtils.copyProperties(offerEntity, offer);
+
+            UserDto userDto = new UserDto();
+            BeanUtils.copyProperties(offerEntity.getUsers().get(0),userDto);
+
+            offer.setUser(userDto);
+
+            offerDtos.add(offer);
+        }
+
+        return offerDtos;
+    }
 }

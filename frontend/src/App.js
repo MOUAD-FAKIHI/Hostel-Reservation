@@ -6,7 +6,10 @@ import LoginScreen from './screens/LoginScreen';
 import RegistrationScree from './screens/RegistrationScree';
 import HomeScreen from './screens/HomeScreen';
 import AdminRoute from './components/ProtectedRoute';
+import ProviderRoute from './components/ProviderRoute';
 import UsersScreen from './screens/UsersScreen';
+import MyOffersScreen from './screens/MyOffersScreen';
+import CreateOfferScreen from './screens/CreateOfferScreen';
 
 function App() {
   return (
@@ -35,6 +38,22 @@ function App() {
                   <AdminRoute>
                     <UsersScreen />
                   </AdminRoute>
+                }
+              />
+              <Route
+                path="/my-offers"
+                element={
+                  <ProviderRoute>
+                    <MyOffersScreen />
+                  </ProviderRoute>
+                }
+              />
+              <Route
+                path="/create-offer"
+                element={
+                  <ProviderRoute>
+                    <CreateOfferScreen />
+                  </ProviderRoute>
                 }
               />
             </Routes>
