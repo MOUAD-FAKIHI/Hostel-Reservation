@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Store } from '../Store';
-import HosResLogo from'../assets/logo/HOSRES.png'
+import HosResLogo from '../assets/logo/HOSRES.png';
 import { Container, Nav, NavDropdown, Navbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -13,14 +13,14 @@ export default function NavbarComponent() {
   const signoutHandler = () => {
     ctxDispatch({ type: 'USER_SIGNOUT' });
     localStorage.removeItem('userInfo');
-    window.location.href = '/';
+    window.location.href = '/login';
   };
   return (
     <>
       <Navbar expand="lg" bg="light" className="navBarStyle" variant="dark">
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand className='d-flex align-items-center justify-content-center'>
+            <Navbar.Brand className="d-flex align-items-center justify-content-center">
               <img
                 alt="PMasteryLogo"
                 src={HosResLogo}
@@ -36,38 +36,55 @@ export default function NavbarComponent() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto  w-100  justify-content-end">
               {userInfo ? (
-                <NavDropdown
-                  title={
-                    <span>
-                      <i
-                        className="pi pi-user"
-                        style={{ color: '#708090' }}
-                      ></i>{' '}
-                      {`${userInfo.name}`}
-                    </span>
-                  }
-                  id="basic-nav-dropdown"
-                >
-                  <LinkContainer to="/profile">
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
-                  </LinkContainer>
-                  <NavDropdown.Divider />
-                  <Link
-                    className="dropdown-item"
-                    to="#signout"
-                    onClick={signoutHandler}
+                <>
+                  {userInfo.role === 'CLIENT' && (
+                    <Link className="nav-link" to="/">
+                      Offres
+                    </Link>
+                  )}
+                  <NavDropdown
+                    title={
+                      <span>
+                        <i
+                          className="pi pi-user"
+                          style={{ color: '#708090' }}
+                        ></i>{' '}
+                        {`${userInfo.name}`}
+                      </span>
+                    }
+                    id="basic-nav-dropdown"
                   >
-                    Se déconnecter
+                    <LinkContainer to="/profile">
+                      <NavDropdown.Item>Profile</NavDropdown.Item>
+                    </LinkContainer>
+                    <NavDropdown.Divider />
+                    <Link
+                      className="dropdown-item"
+                      to="#signout"
+                      onClick={signoutHandler}
+                    >
+                      Se déconnecter
+                    </Link>
+                  </NavDropdown>
+                </>
+              ) : location.pathname === '/login' ? (
+                <>
+                  <Link className="nav-link" to="/">
+                    Offres
                   </Link>
-                </NavDropdown>
-              ) : location.pathname === '/' ? (
-                <Link className="nav-link" to="/registration">
-                  S'inscrire
-                </Link>
+                  <Link className="nav-link" to="/registration">
+                    S'inscrire
+                  </Link>
+                </>
               ) : (
-                <Link className="nav-link" to="/">
-                  Se connecter
-                </Link>
+                <>
+                  <Link className="nav-link" to="/">
+                    Offres
+                  </Link>
+                  <Link className="nav-link" to="/login">
+                    Se connecter
+                  </Link>
+                </>
               )}
             </Nav>
           </Navbar.Collapse>

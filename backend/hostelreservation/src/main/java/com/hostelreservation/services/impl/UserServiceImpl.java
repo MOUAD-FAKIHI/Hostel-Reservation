@@ -1,7 +1,9 @@
 package com.hostelreservation.services.impl;
 
+import com.hostelreservation.entities.OfferEntity;
 import com.hostelreservation.entities.UserEntity;
 import com.hostelreservation.repositories.ConfirmationTokenRepository;
+import com.hostelreservation.repositories.OfferRepository;
 import com.hostelreservation.repositories.UserRepository;
 import com.hostelreservation.services.UserService;
 import com.hostelreservation.shared.Utils;
@@ -23,6 +25,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    OfferRepository offerRepository;
     @Autowired
     ConfirmationTokenRepository confirmationTokenRepository;
     @Autowired
@@ -131,5 +135,23 @@ public class UserServiceImpl implements UserService {
         if (userEntity == null) throw new UsernameNotFoundException(userId);
 
         userRepository.delete(userEntity);
+    }
+
+    @Override
+    public void reserveDemandeOffer(String userId, String offerId) {
+        UserEntity userEntity = userRepository.findByUserId(userId);
+        if(userEntity == null) throw new UsernameNotFoundException(userId);
+
+        OfferEntity offerEntity = offerRepository.findByOfferId(offerId);
+        if (offerEntity == null) throw new UsernameNotFoundException(offerId);
+
+        if(offerEntity.getIsDisponible()==true){
+            List<OfferEntity> offerEntities = new ArrayList<>();
+            offerEntities.add(offerEntity);
+            userEntity.setOffers(offerEntities);
+        }
+
+        userRepository.save(userEntity);
+
     }
 }

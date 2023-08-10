@@ -44,7 +44,7 @@ export default function MyOffersScreen() {
           type: 'FETCH_SUCCESS',
           payload: data,
         });
-        console.log(data);
+        // console.log(data);
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: err });
         console.log(err);

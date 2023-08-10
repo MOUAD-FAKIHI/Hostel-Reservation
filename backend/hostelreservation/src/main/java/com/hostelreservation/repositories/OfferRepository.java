@@ -13,4 +13,12 @@ public interface OfferRepository extends PagingAndSortingRepository<OfferEntity,
 
     @Query("SELECT o FROM OfferEntity o JOIN o.users u WHERE u.userId = :userId")
     List<OfferEntity> findByUserId(@Param("userId") String userId);
+
+    OfferEntity findByOfferId(String offerId);
+
+    @Query("SELECT DISTINCT o FROM OfferEntity o JOIN o.users")
+    List<OfferEntity> findAllWithUsers();
+
+    @Query("SELECT DISTINCT o FROM OfferEntity o JOIN o.users u WHERE u.userId = :userId")
+    List<OfferEntity> findAllWithUsersByUserId(String userId);
 }

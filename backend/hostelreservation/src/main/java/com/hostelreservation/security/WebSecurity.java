@@ -38,6 +38,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                         "/webjars/**"
                         )
                 .permitAll()
+                .antMatchers(HttpMethod.GET, SecurityConstants.OFFER_URL) // Allow GET method for USER_URL
+                .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(getAuthenticationFilter())

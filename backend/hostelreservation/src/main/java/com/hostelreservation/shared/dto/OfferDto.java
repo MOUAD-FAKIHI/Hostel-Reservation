@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -18,6 +19,5 @@ public class OfferDto implements Serializable {
     private String description;
     private Boolean isDisponible;
     private UserDto user;
-
     private List<UserDto> users;
 }

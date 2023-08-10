@@ -49,10 +49,12 @@ public class UserController {
         return new ResponseEntity<List<UserResponse>>(userResponses, HttpStatus.OK);
     }
 
+    @PutMapping("/selectOffer/{userId}/{offerId}")
+    public ResponseEntity<Object> reserveDemandeOffer(@PathVariable String userId,@PathVariable String offerId){
 
-    @PutMapping
-    public String updateUser() {
-        return "update user works!";
+        userService.reserveDemandeOffer(userId,offerId);
+
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping(path="/{userId}")

@@ -15,6 +15,6 @@ public class OfferResponse {
     private String adress;
     private String description;
     private Boolean isDisponible;
-    private List<UserResponse> users;
-    private List<UserResponseWithoutOffer> usersWithoutOffers;
+    private List<UserResponse> user;
+    private List<UserResponseWithoutOffer> users;
 }

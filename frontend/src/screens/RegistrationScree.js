@@ -80,7 +80,7 @@ export default function RegistrationScree() {
       // console.log(form);
       await axios.post('/user', form);
       setLoading(false);
-      navigate(redirect || '/');
+      navigate(redirect || '/login');
     } catch (err) {
       toast.error(getError(err));
       setLoading(false);
@@ -217,7 +217,7 @@ export default function RegistrationScree() {
           </div>
           <div className="mb-3 linkStyle">
             Vous avez déjà un compte?{' '}
-            <Link to={`/?redirect=${redirect}`}>Se connecter</Link>
+            <Link to={"/login"}>Se connecter</Link>
           </div>
         </Form>
       </Container>

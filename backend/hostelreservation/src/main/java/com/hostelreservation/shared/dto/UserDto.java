@@ -20,5 +20,6 @@ public class UserDto implements Serializable {
     private String encryptedPassword;
     private String name;
     private String role;
+    @JsonIgnore
     private List<OfferDto> offers;
 }

@@ -7,7 +7,7 @@ import java.util.List;
 public class OfferResponseWithoutUser extends OfferResponse{
     @Override
     @JsonIgnore
-    public List<UserResponse> getUsers() {
-        return super.getUsers();
+    public List<UserResponse> getUser() {
+        return super.getUser();
     }
 }

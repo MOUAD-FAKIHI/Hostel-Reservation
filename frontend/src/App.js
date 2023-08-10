@@ -5,11 +5,12 @@ import ProtectedRoute from './components/ProtectedRoute';
 import LoginScreen from './screens/LoginScreen';
 import RegistrationScree from './screens/RegistrationScree';
 import HomeScreen from './screens/HomeScreen';
-import AdminRoute from './components/ProtectedRoute';
+import AdminRoute from './components/AdminRoute';
 import ProviderRoute from './components/ProviderRoute';
 import UsersScreen from './screens/UsersScreen';
 import MyOffersScreen from './screens/MyOffersScreen';
 import CreateOfferScreen from './screens/CreateOfferScreen';
+import OffersToClient from './screens/OffersToClient';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <main>
           <Container fluid="md" className="p-0">
             <Routes>
-              <Route path="/" element={<LoginScreen />} />
+              <Route path="/login" element={<LoginScreen />} />
               <Route path="/registration" element={<RegistrationScree />} />
               <Route
                 path="/home"
@@ -56,6 +57,7 @@ function App() {
                   </ProviderRoute>
                 }
               />
+              <Route path="/" element={<OffersToClient />} />
             </Routes>
           </Container>
         </main>
